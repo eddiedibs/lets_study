@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String titleText;
+  final bool isHomePage;
 
   CustomAppBar({
     required this.titleText,
+    required this.isHomePage,
   });
 
   @override
@@ -17,6 +19,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround, 
         children: [
+          isHomePage? Container() : GestureDetector(
+            onTap: () {
+              Navigator.pop(context); // Go back to the previous screen
+            },
+            child: Icon(Icons.arrow_back, color: Colors.black), // Custom back arrow icon
+          ),
           Text(titleText,
                 style: TextStyle(
                 fontFamily: "Montserrat",
@@ -35,7 +43,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ), 
             onPressed: () {
               // Handle the button press here
-              print('Burger button pressed');
+              // print('Burger button pressed');
             },
           ),
         ],

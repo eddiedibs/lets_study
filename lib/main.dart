@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(titleText: "My Activity"),
+      appBar: CustomAppBar(titleText: "My Activity", isHomePage: true,),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 40),
         child: Padding(

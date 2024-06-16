@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:lets_study_flutter/design/custom_app_bar.dart';
 
 class ProgressWidgetPage extends StatefulWidget {
   static const routeName = '/progress-page';
@@ -32,9 +33,7 @@ class _ProgressWidgetPageState extends State<ProgressWidgetPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Progreso Interactivo'),
-      ),
+      appBar: CustomAppBar(titleText: "Progreso Interactivo", isHomePage: false),
       body: Center(
         child: ScaleTransition(
           scale: _animation!,
