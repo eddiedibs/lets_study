@@ -29,52 +29,63 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(titleText: "My Activity", isHomePage: true,),
+      appBar: CustomAppBar(titleText: "My Activity", isHomePage: true),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 40),
+        height: double.infinity, // Ensure the container takes full height
         child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 8.0,
-          mainAxisSpacing: 8.0,
-          children: <Widget>[
-            Center(
-              child: InkWell(
-                onTap: () {
-                  Modular.to.pushNamed('/progress-page');
-                },
-                child: ActivityCard(
-                  value: 'Progreso',
-                  color: const Color.fromARGB(255, 38, 46, 92),
-                  progress: 0.7,
-                  progressColor: const Color.fromARGB(255, 248, 34, 156),
-                  progressBgColor: const Color.fromARGB(255, 60, 69, 110),
-                  icon: Icons.local_fire_department,
+          padding: const EdgeInsets.all(8.0),
+          child: Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 200,
+                  width: 180,
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        Modular.to.pushNamed('/progress-page');
+                      },
+                      child: ActivityCard(
+                          value: 'Progreso',
+                          color: const Color.fromARGB(255, 38, 46, 92),
+                          progress: 0.7,
+                          progressColor: const Color.fromARGB(255, 248, 34, 156),
+                          progressBgColor: const Color.fromARGB(255, 60, 69, 110),
+                          icon: Icons.local_fire_department,
+                        ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-                        Center(
-              child: InkWell(
-                onTap: () {
-                  Modular.to.pushNamed('/progress-page');
-                },
-                child: ActivityCard(
-                  value: 'Cursos',
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  progress: 0.7,
-                  progressColor: const Color.fromARGB(255, 238, 116, 113),
-                  progressBgColor: const Color.fromARGB(255, 240, 241, 245),
-                  icon: Icons.interests,
+                SizedBox(
+                  height: 280,
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        Modular.to.pushNamed('/progress-page');
+                      },
+                      child: ActivityCard(
+                        value: 'Cursos',
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        progress: 0.7,
+                        progressColor: const Color.fromARGB(255, 238, 116, 113),
+                        progressBgColor: const Color.fromARGB(255, 240, 241, 245),
+                        icon: Icons.interests,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                // Add more ActivityCards as needed
+              ],
             ),
-          ],
+          ),
         ),
-      )
       ),
-      bottomNavigationBar: CustomBottomAppBar()
+      bottomNavigationBar: CustomBottomAppBar(),
     );
   }
 }
+
 
