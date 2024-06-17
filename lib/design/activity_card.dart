@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ActivityCard extends StatelessWidget {
+class ActivityCard extends StatefulWidget {
   final String value;
   final Color? color;
   final double progress;
   final Color progressColor;
   final Color? progressBgColor;
   final IconData icon;
-
+    // Constructor for MyCustomWidget
   ActivityCard({
     required this.value,
     this.color,
@@ -18,15 +18,48 @@ class ActivityCard extends StatelessWidget {
   });
 
   @override
+  _ActivityCardState createState() => _ActivityCardState();
+}
+class _ActivityCardState extends State<ActivityCard> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  late double stateProgress = 0; // Target progress value
+
+  @override
+  void initState() {
+    super.initState();
+    stateProgress = widget.progress;
+    _controller = AnimationController(
+      duration: Duration(seconds: 3), // Duration of the animation
+      vsync: this,
+    );
+
+    _animation = Tween<double>(begin: 0, end: stateProgress).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOut,
+      ),
+    );
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
 
-    final progressBarText = '${(progress * 100).toStringAsFixed(2)}%';
     return Card(
       elevation: 10.0, // Adjust the elevation to control the shadow size and intensity
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(30.0)),
       ),
-      color: color,
+      color: widget.color,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -38,15 +71,15 @@ class ActivityCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(
-                  icon,
-                  color: progressColor,
+                  widget.icon,
+                  color: widget.progressColor,
                 ),
                 Text(
-                  value,
+                  widget.value,
                   style: TextStyle(
                     fontFamily: "Montserrat",
                     fontSize: 24,
-                    color: color == Colors.white ? Colors.black : Colors.white,
+                    color: widget.color == Colors.white ? Colors.black : Colors.white,
                   ),
                 ),
               ],
@@ -64,24 +97,34 @@ class ActivityCard extends StatelessWidget {
                   child: Stack(
                       alignment: AlignmentDirectional.center,
                       children: <Widget>[
-                        SizedBox(
-                          width: 100.0, // Adjust the size as needed
-                          height: 100.0, // Adjust the size as needed
-                          child: CircularProgressIndicator(
-                            strokeWidth: 6.0,
-                            value: progress,
-                            color: progressColor,
-                            backgroundColor: progressBgColor,
-                          ),  
+                        AnimatedBuilder(
+                          animation: _animation,
+                          builder: (context, child) {
+                            return SizedBox(
+                              width: 100.0,
+                              height: 100.0,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 6.0,
+                                value: _animation.value,
+                                color: widget.progressColor,
+                                backgroundColor: widget.progressBgColor,
+                              ),
+                            );
+                          },
                         ),
-                        Text(progressBarText,
-                          style: TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: color == Colors.white ? Colors.black : Colors.white,
+                        AnimatedBuilder(
+                          animation: _animation,
+                          builder: (context, child) {
+                            return Text('${(_animation.value * 100).toStringAsFixed(2)}%',
+                                style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: widget.color == Colors.white ? Colors.black : Colors.white,
+                              ),
+                            );
+                          },
                         ),
-                      ),
                       ],
                     )
 

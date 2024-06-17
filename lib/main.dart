@@ -60,12 +60,12 @@ class HomePage extends StatelessWidget {
                   Modular.to.pushNamed('/progress-page');
                 },
                 child: ActivityCard(
-                  value: 'Progreso',
-                  color: const Color.fromARGB(255, 38, 46, 92),
+                  value: 'Cursos',
+                  color: Color.fromARGB(255, 255, 255, 255),
                   progress: 0.7,
-                  progressColor: const Color.fromARGB(255, 248, 34, 156),
-                  progressBgColor: const Color.fromARGB(255, 60, 69, 110),
-                  icon: Icons.local_fire_department,
+                  progressColor: const Color.fromARGB(255, 238, 116, 113),
+                  progressBgColor: const Color.fromARGB(255, 240, 241, 245),
+                  icon: Icons.interests,
                 ),
               ),
             ),
