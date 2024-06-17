@@ -4,6 +4,7 @@ import 'package:lets_study_flutter/routes/main_module.dart';
 import 'package:lets_study_flutter/design/activity_card.dart';
 import 'package:lets_study_flutter/design/custom_app_bar.dart';
 import 'package:lets_study_flutter/design/custom_bottom_app_bar.dart';
+import 'package:lets_study_flutter/design/components/activity_card_circle_progress_component.dart';
 
 void main() {
   runApp(ModularApp(module: AppModule(), child:MyActivityApp()));
@@ -49,35 +50,37 @@ class HomePage extends StatelessWidget {
                         Modular.to.pushNamed('/progress-page');
                       },
                       child: ActivityCard(
-                          value: 'Progreso',
+                          title: 'Progreso',
                           color: const Color.fromARGB(255, 38, 46, 92),
-                          progress: 0.7,
-                          progressColor: const Color.fromARGB(255, 248, 34, 156),
-                          progressBgColor: const Color.fromARGB(255, 60, 69, 110),
+                          widgetComponent: [CircleProgressComponent(
+                                progress: 0.7,
+                                textColor: const Color.fromARGB(255, 38, 46, 92),
+                                progressColor: const Color.fromARGB(255, 248, 34, 156),
+                                progressBgColor: const Color.fromARGB(255, 60, 69, 110),
+                              )],
+                          iconColor: const Color.fromARGB(255, 248, 34, 156),
                           icon: Icons.local_fire_department,
                         ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 280,
-                  child: Center(
-                    child: InkWell(
-                      onTap: () {
-                        Modular.to.pushNamed('/progress-page');
-                      },
-                      child: ActivityCard(
-                        value: 'Cursos',
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        progress: 0.7,
-                        progressColor: const Color.fromARGB(255, 238, 116, 113),
-                        progressBgColor: const Color.fromARGB(255, 240, 241, 245),
-                        icon: Icons.interests,
-                      ),
-                    ),
-                  ),
-                ),
-                // Add more ActivityCards as needed
+                // SizedBox(
+                //   height: 280,
+                //   child: Center(
+                //     child: InkWell(
+                //       onTap: () {
+                //         Modular.to.pushNamed('/progress-page');
+                //       },
+                //       child: ActivityCard(
+                //         title: 'Cursos',
+                //         color: Color.fromARGB(255, 255, 255, 255),
+                //         iconColor: const Color.fromARGB(255, 238, 116, 113),
+                //         icon: Icons.interests,
+                //         widgetComponent: ,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
