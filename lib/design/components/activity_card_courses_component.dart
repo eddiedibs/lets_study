@@ -1,90 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:lets_study_flutter/design/components/activity_card_progress_component.dart';
 
 class CoursesComponent extends StatefulWidget {
-  final List<String> coursesNames;
-  final List<double> progress;
-  final Color textColor;
-  final Color progressColor;
-  final Color progressBgColor;
+  final List<Map<String,dynamic>> courses;
 
   CoursesComponent({
-    required this.coursesNames,
-    required this.progress,
-    required this.textColor,
-    required this.progressColor,
-    required this.progressBgColor,
+    required this.courses,
   });
 
   @override
   CoursesComponentState createState() => CoursesComponentState();
 }
 class CoursesComponentState extends State<CoursesComponent> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-  late double stateProgress = 0; // Target progress value
-
-  @override
-  void initState() {
-    super.initState();
-    // stateProgress = widget.progress;
-    _controller = AnimationController(
-      duration: Duration(seconds: 3), // Duration of the animation
-      vsync: this,
-    );
-
-    _animation = Tween<double>(begin: 0, end: stateProgress).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOut,
-      ),
-    );
-
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-            SizedBox(
-              height: 100,
-              width: 100,
-              child: AnimatedBuilder(
-            animation: _animation,
-            builder: (context, child) {
-              return Container(
-                child: CircularProgressIndicator(
-                  strokeWidth: 6.0,
-                  value: _animation.value,
-                  color: widget.progressColor,
-                  backgroundColor: widget.progressBgColor,
-                ), 
-
-                );
-              }),
-            ),
-            AnimatedBuilder(
-            animation: _animation,
-            builder: (context, child) {
-              return Container(
-                child: Text('${(_animation.value * 100).toStringAsFixed(2)}%',
-                  style: TextStyle(
+          for (var item in widget.courses)
+          ...[
+              Text(
+                item["courseName"]?? "",
+                textAlign: TextAlign.start,
+                style: TextStyle(
                   fontFamily: "Montserrat",
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: widget.textColor == Colors.white ? Colors.black : Colors.white,
-                    ),
-                  ), 
-              );
-            })
+                  fontSize: 16,
+                  color: const Color.fromARGB(255, 255, 255, 255) == Colors.white ? Colors.black : Colors.white,
+                ),
+              ),
+              ProgressComponent(
+                progressComponentType: ProgressComponentType.linear,
+                progress: item["courseProgress"]?? 0,
+                addProgressPercentage: false,
+                progressColor: const Color.fromARGB(255, 238, 116, 113),
+                progressBgColor: const Color.fromARGB(255, 255, 255, 255),
+              )
+          ]
+            
           ],
         );
                 

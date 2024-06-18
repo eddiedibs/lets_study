@@ -65,8 +65,7 @@ class _ActivityCardState extends State<ActivityCard> with SingleTickerProviderSt
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            Spacer(),
+            SizedBox(height: 20),
             Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

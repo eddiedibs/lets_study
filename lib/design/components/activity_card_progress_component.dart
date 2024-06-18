@@ -77,7 +77,7 @@ class ProgressComponentState extends State<ProgressComponent> with SingleTickerP
                 ),
               if (widget.progressComponentType == ProgressComponentType.linear)
                 SizedBox(
-                  height: 10,
+                  height: 5,
                   width: 100,
                   child: AnimatedBuilder(
                 animation: _animation,

@@ -5,6 +5,7 @@ import 'package:lets_study_flutter/design/activity_card.dart';
 import 'package:lets_study_flutter/design/custom_app_bar.dart';
 import 'package:lets_study_flutter/design/custom_bottom_app_bar.dart';
 import 'package:lets_study_flutter/design/components/activity_card_progress_component.dart';
+import 'package:lets_study_flutter/design/components/activity_card_courses_component.dart';
 
 void main() {
   runApp(ModularApp(module: AppModule(), child:MyActivityApp()));
@@ -65,23 +66,30 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                // SizedBox(
-                //   height: 280,
-                //   child: Center(
-                //     child: InkWell(
-                //       onTap: () {
-                //         Modular.to.pushNamed('/progress-page');
-                //       },
-                //       child: ActivityCard(
-                //         title: 'Cursos',
-                //         color: Color.fromARGB(255, 255, 255, 255),
-                //         iconColor: const Color.fromARGB(255, 238, 116, 113),
-                //         icon: Icons.interests,
-                //         widgetComponent: ,
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                SizedBox(
+                  height: 280,
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        Modular.to.pushNamed('/progress-page');
+                      },
+                      child: ActivityCard(
+                        title: 'Cursos',
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        iconColor: const Color.fromARGB(255, 238, 116, 113),
+                        icon: Icons.interests,
+                        widgetComponent: [CoursesComponent(
+                          courses: [{"courseName": "French","courseProgress": 0.6},
+                                    {"courseName": "Spanish","courseProgress": 0.9},
+                                    {"courseName": "Algebra","courseProgress": 0.3},
+                                    {"courseName": "Math","courseProgress": 0.9},
+                                    {"courseName": "Chemistry","courseProgress": 0.7},
+                                    ],
+                        )],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
