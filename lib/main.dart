@@ -4,7 +4,7 @@ import 'package:lets_study_flutter/routes/main_module.dart';
 import 'package:lets_study_flutter/design/activity_card.dart';
 import 'package:lets_study_flutter/design/custom_app_bar.dart';
 import 'package:lets_study_flutter/design/custom_bottom_app_bar.dart';
-import 'package:lets_study_flutter/design/components/activity_card_circle_progress_component.dart';
+import 'package:lets_study_flutter/design/components/activity_card_progress_component.dart';
 
 void main() {
   runApp(ModularApp(module: AppModule(), child:MyActivityApp()));
@@ -52,9 +52,10 @@ class HomePage extends StatelessWidget {
                       child: ActivityCard(
                           title: 'Progreso',
                           color: const Color.fromARGB(255, 38, 46, 92),
-                          widgetComponent: [CircleProgressComponent(
+                          widgetComponent: [ProgressComponent(
+                                progressComponentType: ProgressComponentType.circle,
                                 progress: 0.7,
-                                textColor: const Color.fromARGB(255, 38, 46, 92),
+                                addProgressPercentage: true,
                                 progressColor: const Color.fromARGB(255, 248, 34, 156),
                                 progressBgColor: const Color.fromARGB(255, 60, 69, 110),
                               )],
