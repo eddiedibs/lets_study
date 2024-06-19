@@ -12,7 +12,11 @@ class MainModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (context, args) => HomePage()),
-        ChildRoute('/education-card-page', child: (context, args) => EducationCardWidgetPage()),
+        ChildRoute('/education-card-page', child: (context, args) => 
+        EducationCardWidgetPage(cardTitle: args.data["cardTitle"],
+                                cardTitleSize: args.data["cardTitleSize"],
+                                cardDescription: args.data["cardDescription"],
+                              )),
         ChildRoute('/progress-page', child: (context, args) => ProgressWidgetPage()),
         ChildRoute('/quiz-page', child: (context, args) => QuizWidgetPage()),
       ];

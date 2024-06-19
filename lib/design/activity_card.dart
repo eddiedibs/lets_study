@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ActivityCard extends StatefulWidget {
   final String title;
+  final double titleSize;
   final List<Widget> widgetComponent;
   final IconData icon;
   final Color? color;
@@ -10,6 +11,7 @@ class ActivityCard extends StatefulWidget {
 
   ActivityCard({
     required this.title,
+    required this.titleSize,
     required this.icon,
     required this.widgetComponent,
     required this.iconColor,
@@ -59,7 +61,7 @@ class _ActivityCardState extends State<ActivityCard> with SingleTickerProviderSt
                   widget.title,
                   style: TextStyle(
                     fontFamily: "Montserrat",
-                    fontSize: 24,
+                    fontSize: widget.titleSize,
                     color: widget.color == Colors.white ? Colors.black : Colors.white,
                   ),
                 ),

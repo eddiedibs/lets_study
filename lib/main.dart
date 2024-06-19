@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:lets_study_flutter/routes/main_module.dart';
 import 'package:lets_study_flutter/design/activity_card.dart';
 import 'package:lets_study_flutter/design/custom_app_bar.dart';
 import 'package:lets_study_flutter/design/custom_bottom_app_bar.dart';
 import 'package:lets_study_flutter/design/components/activity_card_progress_component.dart';
 import 'package:lets_study_flutter/design/components/activity_card_courses_component.dart';
+import 'package:lets_study_flutter/design/components/activity_card_education_component.dart';
 
 void main() {
   runApp(ModularApp(module: AppModule(), child:MyActivityApp()));
@@ -42,54 +45,94 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
-                  height: 200,
-                  width: 180,
-                  child: Center(
-                    child: InkWell(
-                      onTap: () {
-                        Modular.to.pushNamed('/progress-page');
-                      },
-                      child: ActivityCard(
-                          title: 'Progreso',
-                          color: const Color.fromARGB(255, 38, 46, 92),
-                          widgetComponent: [ProgressComponent(
-                                progressComponentType: ProgressComponentType.circle,
-                                progress: 0.7,
-                                addProgressPercentage: true,
-                                progressColor: const Color.fromARGB(255, 248, 34, 156),
-                                progressBgColor: const Color.fromARGB(255, 60, 69, 110),
-                              )],
-                          iconColor: const Color.fromARGB(255, 248, 34, 156),
-                          icon: Icons.local_fire_department,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                      SizedBox(
+                          height: 200,
+                          width: 180,
+                          child: Center(
+                            child: InkWell(
+                              onTap: () {
+                                Modular.to.pushNamed('/progress-page');
+                              },
+                              child: ActivityCard(
+                                  title: 'Progreso',
+                                  titleSize: 24,
+                                  color: const Color.fromARGB(255, 38, 46, 92),
+                                  widgetComponent: [ProgressComponent(
+                                        progressComponentType: ProgressComponentType.circle,
+                                        progress: 0.7,
+                                        addProgressPercentage: true,
+                                        progressColor: const Color.fromARGB(255, 248, 34, 156),
+                                        progressBgColor: const Color.fromARGB(255, 60, 69, 110),
+                                      )],
+                                  iconColor: const Color.fromARGB(255, 248, 34, 156),
+                                  icon: Icons.local_fire_department,
+                                ),
+                            ),
+                          ),
                         ),
-                    ),
-                  ),
+                        SizedBox(
+                          height: 200,
+                          width: 180,
+                          child: Center(
+                            child: InkWell(
+                              onTap: () {
+                                Modular.to.pushNamed('/progress-page');
+                              },
+                              child: ActivityCard(
+                                  title: 'Progreso',
+                                  titleSize: 24,
+                                  color: const Color.fromARGB(255, 38, 46, 92),
+                                  widgetComponent: [ProgressComponent(
+                                        progressComponentType: ProgressComponentType.circle,
+                                        progress: 0.7,
+                                        addProgressPercentage: true,
+                                        progressColor: const Color.fromARGB(255, 248, 34, 156),
+                                        progressBgColor: const Color.fromARGB(255, 60, 69, 110),
+                                      )],
+                                  iconColor: const Color.fromARGB(255, 248, 34, 156),
+                                  icon: Icons.local_fire_department,
+                                ),
+                            ),
+                          ),
+                        ),
+                  ],
                 ),
-                SizedBox(
-                  height: 280,
-                  child: Center(
-                    child: InkWell(
-                      onTap: () {
-                        Modular.to.pushNamed('/progress-page');
-                      },
-                      child: ActivityCard(
-                        title: 'Cursos',
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        iconColor: const Color.fromARGB(255, 238, 116, 113),
-                        icon: Icons.interests,
-                        widgetComponent: [CoursesComponent(
-                          courses: [{"courseName": "French","courseProgress": 0.6},
-                                    {"courseName": "Spanish","courseProgress": 0.9},
-                                    {"courseName": "Algebra","courseProgress": 0.3},
-                                    {"courseName": "Math","courseProgress": 0.9},
-                                    {"courseName": "Chemistry","courseProgress": 0.7},
-                                    ],
-                        )],
-                      ),
-                    ),
-                  ),
-                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                      SizedBox(
+                          height: 320,
+                          width: 180,
+                          child: Center(
+                            child: InkWell(
+                              onTap: () {
+                                Modular.to.pushNamed('/progress-page');
+                              },
+                              child: ActivityCard(
+                                  title: 'Perfil',
+                                  titleSize: 15,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  widgetComponent: [EducationComponent(
+                                    cardTitle: "John Doe",
+                                    cardTitleSize: 20,
+                                    cardDescription: "Estudiante de ingenieria de software",
+                                    imgUrl: "https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg",
+                                  )],
+                                  iconColor: const Color.fromARGB(255, 52, 164, 255),
+                                  icon: Icons.person,
+                                ),
+                            ),
+                          ),
+                        ),
+                  ],
+                )
+                
+                
               ],
             ),
           ),

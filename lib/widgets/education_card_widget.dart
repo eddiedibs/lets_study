@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class EducationCardWidgetPage extends StatelessWidget {
-  static const routeName = '/education-card-page';
+  final String cardTitle;
+  final double cardTitleSize;
+  final String cardDescription;
+
+  EducationCardWidgetPage({
+    required this.cardTitle,
+    required this.cardTitleSize,
+    required this.cardDescription,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +29,13 @@ class EducationCardWidgetPage extends StatelessWidget {
                 Image.network('https://via.placeholder.com/150'),
                 SizedBox(height: 10),
                 Text(
-                  'Título de la Tarjeta',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  cardTitle,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: cardTitleSize, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Descripción de la tarjeta educativa. Aquí puedes poner cualquier tipo de información relevante.',
+                  cardDescription,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 20),

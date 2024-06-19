@@ -23,7 +23,7 @@ class CoursesComponentState extends State<CoursesComponent> with SingleTickerPro
           ...[
               Text(
                 item["courseName"]?? "",
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: "Montserrat",
                   fontSize: 16,
