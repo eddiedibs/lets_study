@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:lets_study_flutter/design/components/activity_card_progress_component.dart';
 import 'package:lets_study_flutter/design/components/activity_card_education_component.dart';
+import 'package:lets_study_flutter/design/components/activity_card_quizzes_component.dart';
 import 'package:lets_study_flutter/design/activity_card.dart';
 
 part 'activity_state.dart';
@@ -39,12 +40,8 @@ class ActivityCubit extends Cubit<ActivityState> {
           titleSize: 24,
           color: const Color.fromARGB(255, 38, 46, 92),
           widgetComponent: [
-            ProgressComponent(
-              progressComponentType: ProgressComponentType.circle,
-              progress: 0.7,
-              addProgressPercentage: true,
-              progressColor: const Color.fromARGB(255, 248, 34, 156),
-              progressBgColor: const Color.fromARGB(255, 60, 69, 110),
+            QuizzesComponent(
+              quizzes: [{"Quiz1": ""}],
             )
           ],
           iconColor: const Color.fromARGB(255, 248, 34, 156),

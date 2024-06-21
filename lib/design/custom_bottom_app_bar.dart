@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:lets_study_flutter/logic/cubit/quiz_cubit.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:lets_study_flutter/presentation/screens/quiz_widget.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
-  // final String titleText;
+  final _formKey = GlobalKey<FormState>();
+  final List<Map<String, String>> questionsAndAnswers = [];
+  final questionController = TextEditingController();
+  final answerController = TextEditingController();
 
-  // CustomBottomAppBar({
-  //   required this.titleText,
-  // });
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +74,63 @@ class CustomBottomAppBar extends StatelessWidget {
                   child: IconButton(
                     icon: Icon(Icons.add),
                     onPressed: () {
-                      // route placeholder 
-                    },
-                  ), 
-                ),
+                      showDialog(
+                          context: context,
+                          builder: (_) {
+                            return BlocProvider.value(
+                              value: BlocProvider.of<QuizCubit>(context),
+                              child: AlertDialog(
+                            content: Form(
+                              key: _formKey,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextFormField(
+                                    controller: questionController,
+                                    decoration: InputDecoration(labelText: "Question"),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter a question';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  TextFormField(
+                                    controller: answerController,
+                                    decoration: InputDecoration(labelText: "Answer"),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter a answer';
+                                      }
+                                      return null;
+                                    },
+                                    
+                                  ),
+                                  // Repeat TextFormField for each question and answer
+                                  ElevatedButton(
+                                    onPressed: () {
+                                        if (_formKey.currentState!.validate()) {
+                                        _formKey.currentState!.save();
+                                        questionsAndAnswers.insert(0, {'question': questionController.text,'answer': answerController.text});
+
+                                        var quiz = Quiz(questionsAndAnswers: questionsAndAnswers);
+                                        Modular.get<QuizCubit>().addQuiz(quiz);
+                                        Modular.to.pushNamed("/quiz-page");
+
+                                      }
+                                    },
+                                    child: Text("Submit"),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                            );
+                          },
+                        );
+                   }
+                  ),
+                )
               ],
             ),
             Stack(
@@ -108,6 +166,7 @@ class CustomBottomAppBar extends StatelessWidget {
             ),
           ],
       );
+    
   }
 
 

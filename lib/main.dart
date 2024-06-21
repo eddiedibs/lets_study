@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:lets_study_flutter/routes/main_module.dart';
+import 'package:lets_study_flutter/presentation/router/main_module.dart';
 import 'package:lets_study_flutter/design/activity_card.dart';
 import 'package:lets_study_flutter/design/custom_app_bar.dart';
 import 'package:lets_study_flutter/design/custom_bottom_app_bar.dart';
-import 'package:lets_study_flutter/design/components/activity_card_progress_component.dart';
-import 'package:lets_study_flutter/design/components/activity_card_education_component.dart';
 
-import 'package:lets_study_flutter/providers/activity_cubits.dart';
+import 'package:lets_study_flutter/logic/cubit/activity_cubit.dart';
+import 'package:lets_study_flutter/logic/cubit/quiz_cubit.dart';
 
 void main() {
   runApp(ModularApp(module: AppModule(), child: MyActivityApp()));
@@ -18,13 +17,24 @@ void main() {
 class MyActivityApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ActivityCubit>(
+          create: (BuildContext context) => Modular.get<ActivityCubit>()..loadActivities(),
+        ),
+        BlocProvider<QuizCubit>(
+          create: (BuildContext context) => Modular.get<QuizCubit>(),
+        ),
+        // Add more Cubits/Blocs as needed
+      ],
+      child: MaterialApp.router(
       title: 'My Activity',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 230, 231, 235),
       ),
       routerDelegate: Modular.routerDelegate,
       routeInformationParser: Modular.routeInformationParser,
+      )
     );
   }
 }
@@ -32,9 +42,7 @@ class MyActivityApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ActivityCubit()..loadActivities(),
-      child: Scaffold(
+    return Scaffold(
         appBar: CustomAppBar(titleText: "My Activity", isHomePage: true),
         body: Container(
           margin: const EdgeInsets.symmetric(vertical: 40),
@@ -112,7 +120,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: CustomBottomAppBar(),
-      ),
-    );
+      );
   }
 }
