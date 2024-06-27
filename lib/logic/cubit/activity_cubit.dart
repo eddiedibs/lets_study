@@ -9,6 +9,7 @@ import 'package:lets_study_flutter/design/activity_card.dart';
 
 part 'activity_state.dart';
 
+// enum activityType { education, loading }
 class ActivityCubit extends Cubit<ActivityState> {
   ActivityCubit() : super(ActivityInitial());
 
@@ -31,6 +32,7 @@ class ActivityCubit extends Cubit<ActivityState> {
           ],
           iconColor: const Color.fromARGB(255, 248, 34, 156),
           icon: Icons.local_fire_department,
+          route: "/progress-page",
         )
         
       ),
@@ -46,6 +48,7 @@ class ActivityCubit extends Cubit<ActivityState> {
           ],
           iconColor: const Color.fromARGB(255, 248, 34, 156),
           icon: Icons.local_fire_department,
+          route: "/quiz-page",
         )
       ),
       Activity(
@@ -63,8 +66,28 @@ class ActivityCubit extends Cubit<ActivityState> {
           ],
           iconColor: const Color.fromARGB(255, 52, 164, 255),
           icon: Icons.person,
+          route: "/education-card-page",
         )
       ),
     ]));
   }
+
+  // void loadActivity(activityType activityTypeInput) {
+  //   // Simulate loading activities, you can fetch data from API or database here
+  //   switch (activityTypeInput) {
+  //       case activityType.education:
+  //           emit(ActivityComponentLoaded([
+  //             EducationComponent(
+  //                     imgUrl: "https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg",
+  //                     cardTitle: "John Doe",
+  //                     cardTitleSize: 20,
+  //                     cardDescription: "Estudiante de ingeniería de software",
+  //             )
+  //           ]));
+  //       break;
+  //       case activityType.loading:
+  //       break;
+  //     }
+
+  // }
 }

@@ -7,6 +7,7 @@ class ActivityCard extends StatefulWidget {
   final IconData icon;
   final Color? color;
   final Color iconColor;
+  final String? route;
 
 
   ActivityCard({
@@ -16,6 +17,7 @@ class ActivityCard extends StatefulWidget {
     required this.widgetComponent,
     required this.iconColor,
     this.color,
+    this.route,
 
   });
 

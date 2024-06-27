@@ -11,4 +11,5 @@ class QuizCubit extends Cubit<QuizState> {
     final updatedQuizzes = [quiz];
     emit(QuizSuccess(updatedQuizzes));
   }
+
 }

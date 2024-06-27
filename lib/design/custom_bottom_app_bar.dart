@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:lets_study_flutter/logic/cubit/quiz_cubit.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lets_study_flutter/presentation/screens/quiz_widget.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-  final List<Map<String, String>> questionsAndAnswers = [];
+  late Map<String, Object> questionsAndAnswers = {};
   final questionController = TextEditingController();
-  final answerController = TextEditingController();
-
+  final answerController1 = TextEditingController();
+  final answerController2 = TextEditingController();
+  final answerController3 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +97,29 @@ class CustomBottomAppBar extends StatelessWidget {
                                     },
                                   ),
                                   TextFormField(
-                                    controller: answerController,
+                                    controller: answerController1,
+                                    decoration: InputDecoration(labelText: "Answer"),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter a answer';
+                                      }
+                                      return null;
+                                    },
+                                    
+                                  ),
+                                  TextFormField(
+                                    controller: answerController2,
+                                    decoration: InputDecoration(labelText: "Answer"),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter a answer';
+                                      }
+                                      return null;
+                                    },
+                                    
+                                  ),
+                                  TextFormField(
+                                    controller: answerController3,
                                     decoration: InputDecoration(labelText: "Answer"),
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
@@ -111,7 +134,7 @@ class CustomBottomAppBar extends StatelessWidget {
                                     onPressed: () {
                                         if (_formKey.currentState!.validate()) {
                                         _formKey.currentState!.save();
-                                        questionsAndAnswers.insert(0, {'question': questionController.text,'answer': answerController.text});
+                                        questionsAndAnswers = {'question': questionController.text,'answer': [answerController1.text,answerController2.text,answerController3.text]};
 
                                         var quiz = Quiz(questionsAndAnswers: questionsAndAnswers);
                                         Modular.get<QuizCubit>().addQuiz(quiz);

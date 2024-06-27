@@ -19,6 +19,15 @@ class ActivityLoaded extends ActivityState {
   List<Object> get props => [activities];
 }
 
+// class ActivityComponentLoaded extends ActivityState {
+//   final List<Object> activityComponent;
+
+//   const ActivityComponentLoaded(this.activityComponent);
+
+//   @override
+//   List<Object> get props => [activityComponent];
+// }
+
 class Activity {
   final ActivityCard activityCard;
 

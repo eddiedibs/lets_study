@@ -9,6 +9,7 @@ import 'package:lets_study_flutter/design/custom_bottom_app_bar.dart';
 
 import 'package:lets_study_flutter/logic/cubit/activity_cubit.dart';
 import 'package:lets_study_flutter/logic/cubit/quiz_cubit.dart';
+import 'package:lets_study_flutter/logic/cubit/education_cubit.dart';
 
 void main() {
   runApp(ModularApp(module: AppModule(), child: MyActivityApp()));
@@ -25,7 +26,9 @@ class MyActivityApp extends StatelessWidget {
         BlocProvider<QuizCubit>(
           create: (BuildContext context) => Modular.get<QuizCubit>(),
         ),
-        // Add more Cubits/Blocs as needed
+        BlocProvider<EducationCubit>(
+          create: (BuildContext context) => Modular.get<EducationCubit>(),
+        ),
       ],
       child: MaterialApp.router(
       title: 'My Activity',
@@ -59,29 +62,54 @@ class HomePage extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: state.activities.take(2).map((activity) {
-                          return SizedBox(
+                        children: 
+                        [
+                          SizedBox(
                             height: 200,
                             width: 180,
                             child: Center(
                               child: InkWell(
                                 onTap: () {
-                                  Modular.to.pushNamed('/progress-page');
+                                  
+                                  Modular.to.pushNamed(state.activities[0].activityCard.route ?? "/");
                                 },
                                 child: ActivityCard(
-                                  title: activity.activityCard.title,
-                                  titleSize: activity.activityCard.titleSize,
-                                  color: activity.activityCard.color,
+                                  title: state.activities[0].activityCard.title,
+                                  titleSize: state.activities[0].activityCard.titleSize,
+                                  color: state.activities[0].activityCard.color,
                                   widgetComponent: [
-                                    ...activity.activityCard.widgetComponent
+                                    ...state.activities[0].activityCard.widgetComponent
                                   ],
-                                  iconColor: activity.activityCard.iconColor,
-                                  icon: activity.activityCard.icon,
+                                  iconColor: state.activities[0].activityCard.iconColor,
+                                  icon: state.activities[0].activityCard.icon,
+                                  route: state.activities[0].activityCard.route,
                                 ),
                               ),
                             ),
-                          );
-                        }).toList(),
+                          ),
+                          SizedBox(
+                            height: 200,
+                            width: 180,
+                            child: Center(
+                              child: InkWell(
+                                onTap: () {
+                                  Modular.to.pushNamed(state.activities[1].activityCard.route ?? "/");
+                                },
+                                child: ActivityCard(
+                                  title: state.activities[1].activityCard.title,
+                                  titleSize: state.activities[1].activityCard.titleSize,
+                                  color: state.activities[1].activityCard.color,
+                                  widgetComponent: [
+                                    ...state.activities[1].activityCard.widgetComponent
+                                  ],
+                                  iconColor: state.activities[1].activityCard.iconColor,
+                                  icon: state.activities[1].activityCard.icon,
+                                  route: state.activities[1].activityCard.route,
+                                ),
+                              ),
+                            ),
+                          )
+                        ]
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -93,7 +121,8 @@ class HomePage extends StatelessWidget {
                             child: Center(
                               child: InkWell(
                                 onTap: () {
-                                  Modular.to.pushNamed('/progress-page');
+                                  Modular.get<EducationCubit>().loadEducation();
+                                  Modular.to.pushNamed(activity.activityCard.route ?? "/");
                                 },
                                 child: ActivityCard(
                                   title: activity.activityCard.title,
@@ -104,6 +133,7 @@ class HomePage extends StatelessWidget {
                                   ],
                                   iconColor: activity.activityCard.iconColor,
                                   icon: activity.activityCard.icon,
+                                  route: activity.activityCard.route,
                                 ),
                               ),
                             ),
