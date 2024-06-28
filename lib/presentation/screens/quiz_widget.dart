@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lets_study_flutter/logic/cubit/quiz_cubit.dart';
 import 'package:lets_study_flutter/design/custom_app_bar.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 
 class Quiz {

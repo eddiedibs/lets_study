@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ActivityCard extends StatefulWidget {
   final String title;
   final double titleSize;
-  final List<Widget> widgetComponent;
+  final List<Widget>? widgetComponent;
   final IconData icon;
   final Color? color;
   final Color iconColor;
@@ -14,7 +14,7 @@ class ActivityCard extends StatefulWidget {
     required this.title,
     required this.titleSize,
     required this.icon,
-    required this.widgetComponent,
+    this.widgetComponent,
     required this.iconColor,
     this.color,
     this.route,
@@ -75,7 +75,7 @@ class _ActivityCardState extends State<ActivityCard> with SingleTickerProviderSt
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                  ...widget.widgetComponent,
+                  ...widget.widgetComponent?? [Container()],
                   ],
                 ),
               ),

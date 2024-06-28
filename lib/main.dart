@@ -6,6 +6,7 @@ import 'package:lets_study_flutter/presentation/router/main_module.dart';
 import 'package:lets_study_flutter/design/activity_card.dart';
 import 'package:lets_study_flutter/design/custom_app_bar.dart';
 import 'package:lets_study_flutter/design/custom_bottom_app_bar.dart';
+import 'package:lets_study_flutter/design/components/activity_card_quizzes_component.dart';
 
 import 'package:lets_study_flutter/logic/cubit/activity_cubit.dart';
 import 'package:lets_study_flutter/logic/cubit/quiz_cubit.dart';
@@ -78,7 +79,7 @@ class HomePage extends StatelessWidget {
                                   titleSize: state.activities[0].activityCard.titleSize,
                                   color: state.activities[0].activityCard.color,
                                   widgetComponent: [
-                                    ...state.activities[0].activityCard.widgetComponent
+                                    ...state.activities[0].activityCard.widgetComponent ?? [Container()]
                                   ],
                                   iconColor: state.activities[0].activityCard.iconColor,
                                   icon: state.activities[0].activityCard.icon,
@@ -100,7 +101,18 @@ class HomePage extends StatelessWidget {
                                   titleSize: state.activities[1].activityCard.titleSize,
                                   color: state.activities[1].activityCard.color,
                                   widgetComponent: [
-                                    ...state.activities[1].activityCard.widgetComponent
+                                    BlocBuilder<QuizCubit, QuizState>(
+                                        builder: (context, state) {
+                                          if (state is QuizSuccess) {
+                                            return QuizzesComponent(
+                                              quizzes: state.quizzes,
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }
+                                    )
+                                    
                                   ],
                                   iconColor: state.activities[1].activityCard.iconColor,
                                   icon: state.activities[1].activityCard.icon,
@@ -129,7 +141,7 @@ class HomePage extends StatelessWidget {
                                   titleSize: activity.activityCard.titleSize,
                                   color: activity.activityCard.color,
                                   widgetComponent: [
-                                    ...activity.activityCard.widgetComponent
+                                    ...activity.activityCard.widgetComponent ?? [Container()]
                                   ],
                                   iconColor: activity.activityCard.iconColor,
                                   icon: activity.activityCard.icon,
