@@ -33,33 +33,38 @@ class _QuizWidgetPageState extends State<QuizWidgetPage> {
               var quizzes = state.quizzes; // Use the quizzes property from QuizSuccess state
               return Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: quizzes.map((quizItem) {
-                      var answers = quizItem.answer as List<String>;
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            quizItem.question.toString(),
-                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 20),
-                         ...List.generate(answers.length, (index) {
-                            return RadioListTile<int>(
-                              title: Text(answers[index]),
-                              value: index,
-                              groupValue: _selectedValue,
-                              onChanged: (int? value) {
-                                setState(() {
-                                  _selectedValue = value;
-                                });
-                              },
-                            );
-                          }),
-                        ],
-                      );
-                    }).toList(),
-                  ));
+                  child: SingleChildScrollView(
+                    child: Column(
+                        children: quizzes.map((quizItem) {
+                          var answers = quizItem.answer as List<String>;
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                quizItem.question.toString(),
+                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 20),
+                            ...List.generate(answers.length, (index) {
+                                return RadioListTile<int>(
+                                  title: Text(answers[index]),
+                                  value: index,
+                                  groupValue: _selectedValue,
+                                  onChanged: (int? value) {
+                                    setState(() {
+                                      _selectedValue = value;
+                                    });
+                                  },
+                                );
+                              }),
+                              SizedBox(height: 20),
+                              
+                            ],
+                          );
+                        }).toList(),
+                      )
+                    ) 
+                  );
             } else if (state is QuizFailure) {
               // Handle failure state
               return Text('Failed to load quizzes');
