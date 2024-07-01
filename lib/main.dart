@@ -11,6 +11,7 @@ import 'package:lets_study_flutter/design/components/activity_card_quizzes_compo
 import 'package:lets_study_flutter/logic/cubit/activity_cubit.dart';
 import 'package:lets_study_flutter/logic/cubit/quiz_cubit.dart';
 import 'package:lets_study_flutter/logic/cubit/education_cubit.dart';
+import 'package:lets_study_flutter/logic/cubit/course_cubit.dart';
 
 void main() {
   runApp(ModularApp(module: AppModule(), child: MyActivityApp()));
@@ -29,6 +30,9 @@ class MyActivityApp extends StatelessWidget {
         ),
         BlocProvider<EducationCubit>(
           create: (BuildContext context) => Modular.get<EducationCubit>(),
+        ),
+        BlocProvider<CourseCubit>(
+          create: (BuildContext context) => Modular.get<CourseCubit>(),
         ),
       ],
       child: MaterialApp.router(
@@ -71,7 +75,7 @@ class HomePage extends StatelessWidget {
                             child: Center(
                               child: InkWell(
                                 onTap: () {
-                                  
+                                  Modular.get<CourseCubit>().loadCourses();
                                   Modular.to.pushNamed(state.activities[0].activityCard.route ?? "/");
                                 },
                                 child: ActivityCard(
