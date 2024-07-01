@@ -45,7 +45,7 @@ class EducationCardWidgetPage extends StatelessWidget {
                               onPressed: () {},
                               heroTag: 'follow',
                               elevation: 0,
-                              label: const Text("Follow"),
+                              label: const Text("Seguir"),
                               icon: const Icon(Icons.person_add_alt_1),
                             ),
                             const SizedBox(width: 16.0),
@@ -54,7 +54,7 @@ class EducationCardWidgetPage extends StatelessWidget {
                               heroTag: 'mesage',
                               elevation: 0,
                               backgroundColor: Colors.red,
-                              label: const Text("Message"),
+                              label: const Text("Enviar mensaje"),
                               icon: const Icon(Icons.message_rounded),
                             ),
                           ],
@@ -81,8 +81,8 @@ class _ProfileInfoRow extends StatelessWidget {
 
   final List<ProfileInfoItem> _items = const [
     ProfileInfoItem("Posts", 900),
-    ProfileInfoItem("Followers", 120),
-    ProfileInfoItem("Following", 200),
+    ProfileInfoItem("Seguidores", 120),
+    ProfileInfoItem("Siguiendo", 200),
   ];
 
   @override
