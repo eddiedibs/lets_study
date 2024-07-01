@@ -57,6 +57,21 @@ class _QuizWidgetPageState extends State<QuizWidgetPage> {
                                   },
                                 );
                               }),
+                              Center(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    final snackBar = SnackBar(
+                                      content: Text(
+                                        _selectedValue == state.selected
+                                            ? 'Correcto!'
+                                            : 'Incorrecto!',
+                                      ),
+                                    );
+                                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                  },
+                                  child: Text('Enviar Respuesta'),
+                                ),
+                              ),
                               SizedBox(height: 20),
                               
                             ],

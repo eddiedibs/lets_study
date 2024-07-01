@@ -15,13 +15,25 @@ class QuizLoading extends QuizState {
   List<Object?> get props => []; 
 }
 
+class OptionSelected extends QuizState {
+  final int? selectedOption;
+
+  OptionSelected(this.selectedOption);
+
+  @override
+  List<Object?> get props => [selectedOption];
+}
+
 class QuizSuccess extends QuizState {
   final List<Quiz> quizzes;
+  final int? selectedOption;
 
-  QuizSuccess(this.quizzes);
+  QuizSuccess(this.quizzes, this.selectedOption);
 
   @override
   List<Quiz> get props => quizzes;
+
+  int? get selected => selectedOption;
 
 
 }

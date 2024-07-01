@@ -7,9 +7,11 @@ part 'quiz_state.dart';
 class QuizCubit extends Cubit<QuizState> {
   QuizCubit() : super(QuizLoading());
 
-  void addQuiz(Quiz quiz) {
+  void addQuiz(Quiz quiz, int? correctSelection) {
     final updatedQuizzes = [quiz];
-    emit(QuizSuccess(updatedQuizzes));
+    emit(QuizSuccess(updatedQuizzes, correctSelection));
   }
+
+
 
 }

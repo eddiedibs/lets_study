@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:lets_study_flutter/logic/cubit/quiz_cubit.dart';
-import 'package:lets_study_flutter/presentation/screens/quiz_widget.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:lets_study_flutter/design/quiz_dialog.dart';
 
-class CustomBottomAppBar extends StatelessWidget {
+class CustomBottomAppBar extends StatefulWidget {
+  @override
+  _CustomBottomAppBarState createState() => _CustomBottomAppBarState();
+
+}
+
+class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   final _formKey = GlobalKey<FormState>();
   late Map<String, Object> questionsAndAnswers = {};
   final questionController = TextEditingController();
@@ -81,72 +86,7 @@ class CustomBottomAppBar extends StatelessWidget {
                             return BlocProvider.value(
                               value: BlocProvider.of<QuizCubit>(context),
                               child: AlertDialog(
-                            content: Form(
-                              key: _formKey,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TextFormField(
-                                    controller: questionController,
-                                    decoration: InputDecoration(labelText: "Question"),
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Please enter a question';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                  TextFormField(
-                                    controller: answerController1,
-                                    decoration: InputDecoration(labelText: "Answer"),
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Please enter a answer';
-                                      }
-                                      return null;
-                                    },
-                                    
-                                  ),
-                                  TextFormField(
-                                    controller: answerController2,
-                                    decoration: InputDecoration(labelText: "Answer"),
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Please enter a answer';
-                                      }
-                                      return null;
-                                    },
-                                    
-                                  ),
-                                  TextFormField(
-                                    controller: answerController3,
-                                    decoration: InputDecoration(labelText: "Answer"),
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Please enter a answer';
-                                      }
-                                      return null;
-                                    },
-                                    
-                                  ),
-                                  // Repeat TextFormField for each question and answer
-                                  ElevatedButton(
-                                    onPressed: () {
-                                        if (_formKey.currentState!.validate()) {
-                                        _formKey.currentState!.save();
-                                        questionsAndAnswers = {'question': questionController.text,'answer': [answerController1.text,answerController2.text,answerController3.text]};
-
-                                        var quiz = Quiz(questionsAndAnswers: questionsAndAnswers);
-                                        Modular.get<QuizCubit>().addQuiz(quiz);
-                                        Modular.to.pushNamed("/quiz-page");
-
-                                      }
-                                    },
-                                    child: Text("Submit"),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            content: QuizDialog(),
                           ),
                             );
                           },
