@@ -9,7 +9,7 @@ class CourseCubit extends Cubit<CourseState> {
   CourseCubit() : super(CourseInitial());
 
   void loadCourses() {
-    // Simulate loading activities, you can fetch data from API or database here
+    // Simula el cargar los cursos, se puede obtener la data a partir de llamados de API desde aqui
     emit(CourseLoaded([
       Course(
           courseName: "French",

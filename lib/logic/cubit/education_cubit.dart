@@ -9,7 +9,7 @@ class EducationCubit extends Cubit<EducationState> {
   EducationCubit() : super(EducationInitial());
 
   void loadEducation() {
-    // Simulate loading activities, you can fetch data from API or database here
+    // Simula el cargar los elementos de Mi Perfil, se puede obtener la data a partir de llamados de API desde aqui
     emit(EducationLoaded(
         Education( 
         imgUrl: "https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg",

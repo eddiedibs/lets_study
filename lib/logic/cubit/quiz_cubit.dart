@@ -19,7 +19,7 @@ class QuizCubit extends Cubit<QuizState> {
 
 
   void loadQuizzes() {
-    // Simulate loading loadQuizzes, you can fetch data from API or database here
+    // Simula el cargar los quizzes de Mis Quizzes, se puede obtener la data a partir de llamados de API desde aqui
     final Map<String, String> myQuiz = {}; 
     if (myQuiz.isEmpty){
       emit(QuizEmpty()

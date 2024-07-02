@@ -103,11 +103,15 @@ class _QuizDialogState extends State<QuizDialog> {
                 ElevatedButton(
                   onPressed: () {
                       if (_formKey.currentState!.validate() && _selectedValue != null) {
+                        // Guarda el estado del formulario
                         _formKey.currentState!.save();
                         questionsAndAnswers = {'question': questionController.text,'answer': [answerController1.text,answerController2.text,answerController3.text], "correctAnswerPos": _selectedValue!};
 
+                        // Crea instancia de Quiz
                         var quiz = Quiz(questionsAndAnswers: questionsAndAnswers);
+                        // Se agrega la instancia de Quiz al QuizCubit
                         Modular.get<QuizCubit>().addQuiz(quiz);
+                        // Se redirecciona a la ruta
                         Modular.to.pushNamed("/quiz-page");
 
                     }

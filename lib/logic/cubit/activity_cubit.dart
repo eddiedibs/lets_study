@@ -12,7 +12,7 @@ class ActivityCubit extends Cubit<ActivityState> {
   ActivityCubit() : super(ActivityInitial());
 
   void loadActivities() {
-    // Simulate loading activities, you can fetch data from API or database here
+    // Simula el cargar los elementos de Mi Actividad, se puede obtener la data a partir de llamados de API desde aqui
     emit(ActivityLoaded([
       Activity(
         activityCard:ActivityCard(
