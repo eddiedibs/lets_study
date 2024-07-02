@@ -24,6 +24,7 @@ class Course {
   final String courseName;
   final int assignmentsDue;
   final double courseProgress;
+  final Color? courseProgressBgColor;
   final Color widgetColor;
 
 
@@ -31,6 +32,7 @@ class Course {
     required this.courseName,
     required this.assignmentsDue,
     required this.courseProgress,
+    required this.courseProgressBgColor,
     required this.widgetColor,
 
   });

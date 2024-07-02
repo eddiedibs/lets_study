@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lets_study_flutter/logic/cubit/quiz_cubit.dart';
 import 'package:lets_study_flutter/design/custom_app_bar.dart';
+import 'package:lets_study_flutter/design/custom_bottom_app_bar.dart';
 
 
 class Quiz {
@@ -11,6 +12,7 @@ class Quiz {
 
   Object get question => questionsAndAnswers["question"]!;
   Object get answer => questionsAndAnswers["answer"]!;
+  Object get correctAnswerPos => questionsAndAnswers["correctAnswerPos"]!;
 }
 
 
@@ -62,7 +64,7 @@ class _QuizWidgetPageState extends State<QuizWidgetPage> {
                                   onPressed: () {
                                     final snackBar = SnackBar(
                                       content: Text(
-                                        _selectedValue == state.selected
+                                        _selectedValue == quizItem.correctAnswerPos
                                             ? 'Correcto!'
                                             : 'Incorrecto!',
                                       ),
@@ -83,10 +85,22 @@ class _QuizWidgetPageState extends State<QuizWidgetPage> {
             } else if (state is QuizFailure) {
               // Handle failure state
               return Text('Failed to load quizzes');
+            } else if (state is QuizEmpty) {
+              // Handle failure state
+              return const Text(
+                  "No hay quizzes pendientes.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 20,
+                    color: Colors.black,
+                      ),
+                    );
             } else {
               return Text('Unknown state');
             }
           }),
+      bottomNavigationBar: CustomBottomAppBar(),
     );
   }
 }

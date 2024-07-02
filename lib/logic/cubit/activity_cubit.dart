@@ -38,10 +38,10 @@ class ActivityCubit extends Cubit<ActivityState> {
         activityCard:ActivityCard(
           title: 'Quizzes',
           titleSize: 24,
-          color: const Color.fromARGB(255, 38, 46, 92),
+          color: const Color.fromARGB(255, 255, 255, 255),
           widgetComponent: const [],
-          iconColor: const Color.fromARGB(255, 248, 34, 156),
-          icon: Icons.local_fire_department,
+          iconColor: const Color.fromARGB(255, 237, 112, 110),
+          icon: Icons.question_answer,
           route: "/quiz-page",
         )
       ),

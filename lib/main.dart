@@ -26,7 +26,11 @@ class MyActivityApp extends StatelessWidget {
           create: (BuildContext context) => Modular.get<ActivityCubit>()..loadActivities(),
         ),
         BlocProvider<QuizCubit>(
-          create: (BuildContext context) => Modular.get<QuizCubit>(),
+          create: (BuildContext context) {
+            final quizCubit = Modular.get<QuizCubit>();
+            quizCubit.loadQuizzes(); // Call loadQuizzes when the cubit is created
+            return quizCubit;
+          },
         ),
         BlocProvider<EducationCubit>(
           create: (BuildContext context) => Modular.get<EducationCubit>(),
@@ -112,7 +116,15 @@ class HomePage extends StatelessWidget {
                                               quizzes: state.quizzes,
                                             );
                                           } else {
-                                            return Container();
+                                            return const Text(
+                                              "No hay quizzes pendientes.",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontFamily: "Montserrat",
+                                                fontSize: 20,
+                                                color: Colors.black,
+                                                  ),
+                                                );
                                           }
                                         }
                                     )

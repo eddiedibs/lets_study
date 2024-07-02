@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lets_study_flutter/design/custom_app_bar.dart';
 import 'package:lets_study_flutter/design/components/activity_card_progress_component.dart';
 import 'package:lets_study_flutter/logic/cubit/course_cubit.dart';
+import 'package:lets_study_flutter/design/custom_bottom_app_bar.dart';
 
 class ProgressWidgetPage extends StatefulWidget {
-  static const routeName = '/progress-page';
 
   @override
   _ProgressWidgetPageState createState() => _ProgressWidgetPageState();
@@ -98,18 +98,29 @@ class _ProgressWidgetPageState extends State<ProgressWidgetPage>
                                         fontFamily: "Montserrat",
                                         fontSize: 20,
                                         color: Colors.white,
+                                          ),
+                                        )
                                       ),
-                                    )
-                                      )
 
                                     ]),
+                                    Padding(
+                                      padding: EdgeInsets.only(bottom: 15.0),
+                                      child: Text(
+                                      "${courseItem.assignmentsDue} Assignments due",
+                                      style: const TextStyle(
+                                        fontFamily: "Montserrat",
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                          ),
+                                        )
+                                      ),
                                     ProgressComponent(
-                                    progressComponentType: ProgressComponentType.linear,
-                                    progress: courseItem.courseProgress,
-                                    addProgressPercentage: false,
-                                    progressColor: Colors.white,
-                                    progressBgColor: Colors.red[200] ?? Colors.red,
-                                  )
+                                      progressComponentType: ProgressComponentType.linear,
+                                      progress: courseItem.courseProgress,
+                                      addProgressPercentage: false,
+                                      progressColor: Colors.white,
+                                      progressBgColor: courseItem.courseProgressBgColor ?? Colors.white,
+                                    )
                                   ]))
                               ), 
                       );
@@ -123,26 +134,10 @@ class _ProgressWidgetPageState extends State<ProgressWidgetPage>
               }
           ),
 
-
-          
-          // CircularPercentIndicator(
-          //   radius: 100.0,
-          //   lineWidth: 10.0,
-          //   animation: true,
-          //   percent: 0.7,
-          //   center: Text(
-          //     "70%",
-          //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-          //   ),
-          //   footer: Text(
-          //     "Progreso del Curso",
-          //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
-          //   ),
-          //   circularStrokeCap: CircularStrokeCap.round,
-          //   progressColor: Colors.blue,
-          // ),
         ),
       ),
+      bottomNavigationBar: CustomBottomAppBar(),
+
     );
   }
 }

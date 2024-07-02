@@ -102,17 +102,17 @@ class _QuizDialogState extends State<QuizDialog> {
 
                 ElevatedButton(
                   onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      questionsAndAnswers = {'question': questionController.text,'answer': [answerController1.text,answerController2.text,answerController3.text]};
+                      if (_formKey.currentState!.validate() && _selectedValue != null) {
+                        _formKey.currentState!.save();
+                        questionsAndAnswers = {'question': questionController.text,'answer': [answerController1.text,answerController2.text,answerController3.text], "correctAnswerPos": _selectedValue!};
 
-                      var quiz = Quiz(questionsAndAnswers: questionsAndAnswers);
-                      Modular.get<QuizCubit>().addQuiz(quiz, _selectedValue);
-                      Modular.to.pushNamed("/quiz-page");
+                        var quiz = Quiz(questionsAndAnswers: questionsAndAnswers);
+                        Modular.get<QuizCubit>().addQuiz(quiz);
+                        Modular.to.pushNamed("/quiz-page");
 
                     }
                   },
-                  child: Text("Submit"),
+                  child: Text("Enviar"),
                 ),
               ],
             ),

@@ -29,7 +29,7 @@ class QuizzesComponentState extends State<QuizzesComponent> with SingleTickerPro
                 style: TextStyle(
                   fontFamily: "Montserrat",
                   fontSize: 16,
-                  color: const Color.fromARGB(255, 60, 69, 110) == Colors.white ? Colors.black : Colors.white,
+                  color: Colors.black,
                 ),
               ),
           ]
