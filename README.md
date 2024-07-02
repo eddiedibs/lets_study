@@ -1,17 +1,46 @@
-# lets_study_flutter
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 # lets_study
+
+lets_study es una sencilla aplicación móvil Flutter que integra animaciones básicas y gestión de estado con BloC.
+
+## Comenzando
+
+Sigue estas instrucciones para obtener una copia del proyecto y ejecutarlo en tu máquina local.
+
+### Prerrequisitos
+
+- [Flutter](https://flutter.dev/docs/get-started/install) (Asegúrate de que esté instalado y configurado correctamente)
+
+### Instalación
+
+1. **Clonar el repositorio**
+   ```sh
+   git clone https://github.com/eddiedibs/lets_study.git
+   cd lets_study
+   ```
+
+2. **Instalar dependencias**
+   ```sh
+   flutter pub get
+   ```
+
+3. **Ejecutar la aplicación**
+   ```sh
+   flutter run
+   ```
+
+### Información Adicional
+
+Para obtener ayuda sobre cómo comenzar con Flutter, consulta la [documentación en línea](https://flutter.dev/docs), que ofrece tutoriales, ejemplos, orientación sobre desarrollo móvil y una referencia completa de la API.
+
+## Construido con
+
+- [Flutter](https://flutter.dev) - El framework utilizado
+
+## Autores
+
+- **eddiedibs**
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT - mira el archivo [LICENSE](LICENSE) para más detalles.
