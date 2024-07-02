@@ -28,7 +28,7 @@ class _QuizWidgetPageState extends State<QuizWidgetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(titleText: "My Activity", isHomePage: false),
+      appBar: CustomAppBar(titleText: "Mis Quizzes", isHomePage: false),
       body: BlocBuilder<QuizCubit, QuizState>(
           builder: (context, state) {
             if (state is QuizSuccess) {

@@ -12,7 +12,7 @@ class EducationCardWidgetPage extends StatelessWidget {
     return BlocProvider.value(
     value: BlocProvider.of<EducationCubit>(context),
     child: Scaffold(
-      appBar: CustomAppBar(titleText: "My Activity", isHomePage: false),
+      appBar: CustomAppBar(titleText: "Mi perfil", isHomePage: false),
       body: Column(
         children: [
           const Expanded(flex: 2, child: _TopPortion()),

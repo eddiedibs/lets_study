@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(titleText: "My Activity", isHomePage: true),
+        appBar: CustomAppBar(titleText: "Mi actividad", isHomePage: true),
         body: Container(
           margin: const EdgeInsets.symmetric(vertical: 40),
           height: double.infinity,
@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: 200,
+                            height: 220,
                             width: 180,
                             child: Center(
                               child: InkWell(
